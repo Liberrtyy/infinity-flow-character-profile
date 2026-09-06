@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无限流角色资料卡</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-wrapper">
+            <!-- 左侧：表单输入 -->
+            <div class="form-section">
+                <h1>角色资料编辑器</h1>
+                
+                <div class="form-group">
+                    <label>照片</label>
+                    <div class="photo-upload">
+                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                        <button class="btn-upload" onclick="document.getElementById('photoInput').click()">
+                            选择图片
+                        </button>
+                        <p style="font-size: 12px; color: #999; margin-top: 8px;">或直接粘贴图片到输入框</p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>姓名 *</label>
+                        <input type="text" id="name" placeholder="输入角色名字" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label>年龄</label>
+                        <input type="number" id="age" placeholder="输入年龄" class="input-field">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>性别</label>
+                        <select id="gender" class="input-field">
+                            <option value="">未选择</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>副本级别</label>
+                        <input type="text" id="level" placeholder="例: 初级/中级/高级" class="input-field">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>副本名称</label>
+                        <input type="text" id="dungeonName" placeholder="输入副本名称" class="input-field">
+                    </div>
+                    <div class="form-group">
+                        <label>死亡状态</label>
+                        <select id="deathStatus" class="input-field">
+                            <option value="存活">存活</option>
+                            <option value="死亡">死亡</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>活动记录</label>
+                    <textarea id="activities" placeholder="在此输入详细的活动记录和经历..." class="textarea-field"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn-save" onclick="saveData()">保存数据</button>
+                    <button class="btn-export" onclick="exportImage()">导出图片</button>
+                    <button class="btn-reset" onclick="resetForm()">重置</button>
+                </div>
+            </div>
+
+            <!-- 右侧：预览卡片 -->
+            <div class="preview-section">
+                <div class="card-wrapper" id="cardPreview">
+                    <div class="profile-card">
+                        <div class="card-content">
+                            <!-- 左侧：照片区域 -->
+                            <div class="card-left">
+                                <div class="card-photo">
+                                    <div id="cardPhotoDisplay" class="photo-placeholder">
+                                        <span>证件照</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 右侧：信息区域 -->
+                            <div class="card-right">
+                                <!-- 基本信息 -->
+                                <div class="card-header">
+                                    <h2 id="cardName">未命名角色</h2>
+                                    <div class="basic-info">
+                                        <span class="info-item">年龄: <span id="cardAge">-</span></span>
+                                        <span class="info-item">性别: <span id="cardGender">-</span></span>
+                                    </div>
+                                </div>
+
+                                <!-- 副本信息 -->
+                                <div class="card-section">
+                                    <div class="section-title">副本信息</div>
+                                    <div class="section-content">
+                                        <div class="info-row">
+                                            <span class="label">级别:</span>
+                                            <span id="cardLevel" class="value">-</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <span class="label">副本名:</span>
+                                            <span id="cardDungeonName" class="value">-</span>
+                                        </div>
+                                        <div class="info-row">
+                                            <span class="label">状态:</span>
+                                            <span id="cardDeathStatus" class="value status">存活</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 活动记录 -->
+                                <div class="card-section activities-section">
+                                    <div class="section-title">活动记录</div>
+                                    <div class="section-content activities-content">
+                                        <p id="cardActivities">暂无记录</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 底部装饰 -->
+                        <div class="card-footer">
+                            <div class="footer-decoration"></div>
+                            <p class="footer-text">无限流角色资料卡</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
